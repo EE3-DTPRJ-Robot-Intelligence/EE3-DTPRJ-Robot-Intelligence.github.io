@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Page title -->
+        <title>User Guide: Phidget Load Cells</title>
+
+        <!-- Bootstrap core CSS: Material design -->
+        <link rel="stylesheet" href="vendor/material/css/material-icons.css">
+        <link rel="stylesheet" href="vendor/material/css/bootstrap-material-design.min.css">
+
+        <!-- highlight.js -->
+        <link rel="stylesheet" href="vendor/highlight/default.min.css">
+        <script src="vendor/highlight/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+
+        <!-- Custom styles -->
+        <link rel="stylesheet" href="css/custom.css">
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="js/custom.js"></script>
+
+    </head>
+
+    <body>
+        <!-- Content wrapper -->
+        <div id="wrapper" class="row">
+
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper" class="bg-dark" w3-include-html="toc.html"></div>
+
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <h1>User Guide: Phidget Load Cells</h1><hr />
+                        <p>Python script for polling mode pressure sensing with 4 half bridge loadcells</p>
+                            <h2><a id="Prerequisites_3"></a>Prerequisites</h2>
+                                <h3><a id="hardware_4"></a>hardware:</h3>
+                                <ul>
+                                <li>PhidgetBridge 1046,</li>
+                                <li>mini usb cable loadcells,</li>
+                                <li>resistors(match the resistance of the strain gauge)</li>
+                                </ul>
+                                <h3><a id="software_9"></a>software:</h3>
+                                <ul>
+                                <li>Phidget22 library - “libphidget22”,</li>
+                                <li>Python2.7 or 3.6,</li>
+                                <li>Phidget Python Module</li>
+                                </ul>
+                            <h2><a id="Wiring_Guide_15"></a>Wiring Guide</h2>
+                                <p>Depends on what type of loatdcells you are using, additional wiring might be required.Please check your spec sheet:</p>
+                                <p>For half-bridge loadcells, you need to complete the circuit with two resistors at the same resistance as the strain gauge:<br>
+                                <img src="https://www.xsimulator.net/community/attachments/30j0d2t-jpg.24306/" alt="alt-text"></p>
+                                <p>If you are not sure what resistance to pick, measure between the white and the red line, and between the balck and the red line. Pick the same resistance for the resistors, and complete the circuit as shown above. In our case is 1k ohms.</p>
+                                <p><img src="http://www.phidgets.com/images/3136_0_Wiring.jpg" alt="alt-text"></p>
+                                <p>Input+ and Input- are power line, which should be connected to the 5V and Ground on the phidget.</p>
+                                <p>OUtput A and output b are excitation signal and should be connected to “+” and “-” pins.</p>
+                            <h2><a id="Install_phidget22_library__Linux_30"></a>Install phidget22 library - Linux</h2>
+                                <ol>
+                                    <li>First make sure to have libusb-1.0 development libraries installed
+                                        <pre><code class="hljs bash">apt-get install libusb-<span class="hljs-number">1.0</span>-<span class="hljs-number">0</span>-dev</code></pre>
+                                        <p>Next, download the <a href="https://www.phidgets.com/downloads/phidget22/libraries/linux/libphidget22.tar.gz">libphidget22</a> package</p>
+                                    </li>
+                                    <li>Extract the package, open the README file and follow the instrustions about how to install the files.</li>
+                                    <li>Libraries are by deauflt installed in /usr/local/lib. If this is not the library path for your system, you can:
+                                    <p>a. specify a different folder for installation:</p>
+                                    <pre><code class="hljs bash">./configure --prefix=/usr &amp;&amp; make &amp;&amp; sudo make install</code></pre>
+                                    <p>b. or add /usr/local/lib to the system-wide library path:</p>
+                                    <pre><code class="hljs bash"><span class="hljs-built_in">echo</span> /usr/<span class="hljs-built_in">local</span>/lib &gt;&gt; /etc/ld.so.conf &amp;&amp; sudo ldconfig</code></pre>
+                                    </li>
+                                    <li>
+                                    <p>To verify that the libraries are properly installed, download the <a href="https://www.phidgets.com/downloads/phidget22/examples/c/Manager/Phidget22_HelloWorld_C_Ex.zip">HelloWorld C example</a></p>
+                                    <p>Compile and run the example:</p>
+                                    <pre><code class="hljs bash">gcc HelloWorld.c -o HelloWorld -lphidget22</code></pre>
+                                    <pre><code class="hljs bash">./HelloWorld</code></pre>
+                                    <p>Your output should look like this:<br>
+                                    <img src="https://www.phidgets.com/docs/images/1/1a/Linux_helloworld.PNG" alt="alt-text"></p>
+                                    </li>
+                                </ol>
+                                <p>for other more detailed information or other OS please go to <a href="https://www.phidgets.com/docs/OS_-_Linux#Getting_Started_with_Linux">https://www.phidgets.com/docs/OS - Linux</a></p>
+                            <h2><a id="Install_Phidge_Python_Module_69"></a>Install Phidge Python Module</h2>
+                                <p>Other languages are also supported: <a href="https://www.phidgets.com/docs/Language_-_C">C</a>, <a href="https://www.phidgets.com/docs/Language_-_Java">Java</a></p>
+                                <p>For Python:</p>
+                                <ol>
+                                    <li>Download and unpack the <a href="https://www.phidgets.com/downloads/phidget22/libraries/any/Phidget22Python.zip">Phidget Python Module</a></li>
+                                    <li>On terminal install the module:
+                                        <pre><code class="hljs bash">python setup.py install</code></pre>
+                                    </li>
+                                    <li>Now you can connect your phidget and run the script.</li>
+                                </ol>
+                            <h2><a id="Event_Driven_Mode_87"></a>Event Driven Mode</h2>
+                                <p>The original example code from Phidget website is event driven. Only when there is a change in the input that meets the criteria will there be an output on the terminal. You can download the code <a href="https://www.phidgets.com/downloads/phidget22/examples/python/VoltageRatioInput/Phidget22_VoltageRatio_Python_Ex.zip">here</a>.</p>
+                            <h2><a id="Polling_Mode_92"></a>Polling Mode</h2>
+                                <p>In our case we want to run phidget in polling mode so that we can monitor all four channels simultatiously at each clock cycle.The file <em><a href="http://AllChannels.py">AllChannels.py</a></em> is the modified version of the example code that serves the need. The serial number can be changed in the script to match your devices.</p>
+                                <pre><code class="hljs python"><span class="hljs-string">" Set matching parameters to specify which channel to open"</span>
+ch0.setDeviceSerialNumber(<span class="hljs-number">494011</span>)
+ch0.setChannel(<span class="hljs-number">0</span>)
+ch1.setDeviceSerialNumber(<span class="hljs-number">494011</span>)
+ch1.setChannel(<span class="hljs-number">1</span>)
+ch2.setDeviceSerialNumber(<span class="hljs-number">494011</span>)
+ch2.setChannel(<span class="hljs-number">2</span>)
+ch3.setDeviceSerialNumber(<span class="hljs-number">494011</span>)
+ch3.setChannel(<span class="hljs-number">3</span>)</code></pre>
+
+                </div>
+
+            </div> <!-- /#page-content-wrapper -->
+        </div> <!-- /#wrapper -->
+
+        <!-- call includeHTML() -->
+        <script type="text/javascript">includeHTML();</script>
+
+        <!-- Bootstrap core JavaScript ================================================== -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="vendor/popper/popper.min.js"></script>
+        <!-- Bootstrap core JS: Material design -->
+        <script type="text/javascript" src="vendor/material/js/bootstrap-material-design.min.js"></script>
+
+    </body>
+</html>
