@@ -38,20 +38,20 @@
                 <div class="container-fluid">
                     <h1>User Guide: Phidget Load Cells</h1><hr />
                         <p>Python script for polling mode pressure sensing with 4 half bridge loadcells</p>
-                            <h2><a id="Prerequisites_3"></a>Prerequisites</h2>
-                                <h3><a id="hardware_4"></a>hardware:</h3>
+                            <h2>Prerequisites</h2>
+                                <h3>hardware:</h3>
                                 <ul>
                                 <li>PhidgetBridge 1046,</li>
                                 <li>mini usb cable loadcells,</li>
                                 <li>resistors(match the resistance of the strain gauge)</li>
                                 </ul>
-                                <h3><a id="software_9"></a>software:</h3>
+                                <h3>software:</h3>
                                 <ul>
                                 <li>Phidget22 library - “libphidget22”,</li>
                                 <li>Python2.7 or 3.6,</li>
                                 <li>Phidget Python Module</li>
                                 </ul>
-                            <h2><a id="Wiring_Guide_15"></a>Wiring Guide</h2>
+                            <h2>Wiring Guide</h2>
                                 <p>Depends on what type of loatdcells you are using, additional wiring might be required.Please check your spec sheet:</p>
                                 <p>For half-bridge loadcells, you need to complete the circuit with two resistors at the same resistance as the strain gauge:<br>
                                 <img src="https://www.xsimulator.net/community/attachments/30j0d2t-jpg.24306/" alt="alt-text"></p>
@@ -59,7 +59,7 @@
                                 <p><img src="http://www.phidgets.com/images/3136_0_Wiring.jpg" alt="alt-text"></p>
                                 <p>Input+ and Input- are power line, which should be connected to the 5V and Ground on the phidget.</p>
                                 <p>OUtput A and output b are excitation signal and should be connected to “+” and “-” pins.</p>
-                            <h2><a id="Install_phidget22_library__Linux_30"></a>Install phidget22 library - Linux</h2>
+                            <h2>Install phidget22 library - Linux</h2>
                                 <ol>
                                     <li>First make sure to have libusb-1.0 development libraries installed
                                         <pre><code class="hljs bash">apt-get install libusb-<span class="hljs-number">1.0</span>-<span class="hljs-number">0</span>-dev</code></pre>
@@ -82,7 +82,7 @@
                                     </li>
                                 </ol>
                                 <p>for other more detailed information or other OS please go to <a href="https://www.phidgets.com/docs/OS_-_Linux#Getting_Started_with_Linux">https://www.phidgets.com/docs/OS - Linux</a></p>
-                            <h2><a id="Install_Phidge_Python_Module_69"></a>Install Phidge Python Module</h2>
+                            <h2>Install Phidge Python Module</h2>
                                 <p>Other languages are also supported: <a href="https://www.phidgets.com/docs/Language_-_C">C</a>, <a href="https://www.phidgets.com/docs/Language_-_Java">Java</a></p>
                                 <p>For Python:</p>
                                 <ol>
@@ -92,9 +92,9 @@
                                     </li>
                                     <li>Now you can connect your phidget and run the script.</li>
                                 </ol>
-                            <h2><a id="Event_Driven_Mode_87"></a>Event Driven Mode</h2>
+                            <h2>Event Driven Mode</h2>
                                 <p>The original example code from Phidget website is event driven. Only when there is a change in the input that meets the criteria will there be an output on the terminal. You can download the code <a href="https://www.phidgets.com/downloads/phidget22/examples/python/VoltageRatioInput/Phidget22_VoltageRatio_Python_Ex.zip">here</a>.</p>
-                            <h2><a id="Polling_Mode_92"></a>Polling Mode</h2>
+                            <h2>Polling Mode</h2>
                                 <p>In our case we want to run phidget in polling mode so that we can monitor all four channels simultatiously at each clock cycle.The file <em><a href="http://AllChannels.py">AllChannels.py</a></em> is the modified version of the example code that serves the need. The serial number can be changed in the script to match your devices.</p>
                                 <pre><code class="hljs python"><span class="hljs-string">" Set matching parameters to specify which channel to open"</span>
 ch0.setDeviceSerialNumber(<span class="hljs-number">494011</span>)
