@@ -44,7 +44,12 @@
                             <ul>
                                 <li>5 ODrive 3.4-48V boards: a motor control board designed by Oskar Weigl, is used to control the motors.</li>
                                 <li>10 encoder (AS5047P-TS_EK_AB): which has 4000 count per rotation (CPR).</li>
-                                <li>10 brushless DC motor: there are 5 brushless DC motors per SLIDER leg: pitch, slide, hip roll and 2 ankles. The hip roll motors have a pole pair count of 20, while all other motors have 7.</li>
+                                <li>10 brushless DC motor:
+                                    <ul>
+                                        <li>there are 5 brushless DC motors per SLIDER leg: pitch, slide, hip roll and 2 ankles.</li>
+                                        <li>The hip roll motors have a pole pair count of 20, while all other motors have 7.</li>
+                                    </ul>
+                                </li>
                                 <li>5 encoder cables: custom made 16-wire cable for connecting two encoders to one ODrive (connection shown below).</li>
                                 <img src="asset/img/SLIDER_wiring.jpg" width="800px">
                             </ul>
@@ -52,9 +57,10 @@
                         <p>For Ubuntu:</p>
                         <ul>
                             <li>install Python 3</li>
-                            <li>navigate to <code>tools</code> directory and run:</li>
+                            <li>navigate to <code>tools</code> directory and run:
+                                <pre><code class="hljs bash">bash install_prereq</code></pre>
+                            </li>
                         </ul>
-                        <pre><code class="hljs bash">bash install_prereq</code></pre>
                         <p>This installs the required packages and sets up the USB permissions for serial communication.</p>
                         <h2>Usage</h2>
                         <h3>Configuration</h3>
