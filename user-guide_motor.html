@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Page title -->
+        <title>User Guide: ODrive Motor Control</title>
+
+        <!-- Bootstrap core CSS: Material design -->
+        <link rel="stylesheet" href="vendor/material/css/material-icons.css">
+        <link rel="stylesheet" href="vendor/material/css/bootstrap-material-design.min.css">
+
+        <!-- highlight.js -->
+        <link rel="stylesheet" href="vendor/highlight/default.min.css">
+        <script src="vendor/highlight/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+
+        <!-- Custom styles -->
+        <link rel="stylesheet" href="css/custom.css">
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="js/custom.js"></script>
+
+    </head>
+
+    <body>
+        <!-- Content wrapper -->
+        <div id="wrapper" class="row">
+
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper" class="bg-dark" w3-include-html="toc.html"></div>
+
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <h1>User Guide: ODrive Motor Control<hr /></h1>
+                        <p>Brushless DC motor control</p>
+                        <h2>Prerequisites</h2>
+                            <h3>Hardware</h3>
+                            <p>For one 2-dof (degree-of-freedom) SLIDER, the following are required:</p>
+                            <ul>
+                                <li>5 ODrive 3.4-48V boards: a motor control board designed by Oskar Weigl, is used to control the motors.</li>
+                                <li>10 encoder (AS5047P-TS_EK_AB): which has 4000 count per rotation (CPR).</li>
+                                <li>10 brushless DC motor: there are 5 brushless DC motors per SLIDER leg: pitch, slide, hip roll and 2 ankles. The hip roll motors have a pole pair count of 20, while all other motors have 7.</li>
+                                <li>5 encoder cables: custom made 16-wire cable for connecting two encoders to one ODrive (connection shown below).</li>
+                                <img src="asset/img/SLIDER_wiring.jpg">
+                            </ul>
+                            <h3>Software</h3>
+                        <p>For Ubuntu:</p>
+                        <ul>
+                            <li>install Python 3</li>
+                            <li>navigate to <code>tools</code> directory and run:</li>
+                        </ul>
+                        <pre><code class="hljs bash">bash install_prereq</code></pre>
+                        <p>This installs the required packages and sets up the USB permissions for serial communication.</p>
+                        <h2>Usage</h2>
+                        <h3>Configuration</h3>
+                        <h4>Build configuration</h4>
+                        <p>Copy or rename the file <code>Firmware/tup.config.default</code> to <code>Firmware/tup.config</code>, and edit this parameter:</p>
+                        <pre><code class="hljs bash">CONFIG_BOARD_VERSION=v3.4-48V</code></pre>
+                        <h4>Firmware modification</h4>
+                        <p>The following values/variables in the firmware code (namely <code>Firmware/MotorControl/low_level.c</code>) must be modified, in order to control the motors correctly:</p>
+                        <ul>
+                            <li><code>POLE_PAIRS</code>: pole pair count of the motors used.</li>
+                            <li><code>ENCODER_CPR</code>: must be modified to 4000.</li>
+                            <li>PID gain values</li>
+                        </ul>
+                        <h3>Flash firmware</h3>
+                        <ul>
+                            <li>Connect GND, SWD, and SWC on connector J2 to the programmer. Note: Always plug in GND first!</li>
+                            <li>in <code>Firmware</code> directory, run the following commands:
+                                <pre><code class="hljs bash">make &amp;&amp; make flash</code></pre>
+                            </li>
+                            <li>Unplug programmer</li>
+                        </ul>
+                        <h3>Sending commands over USB</h3>
+                        <ul>
+                            <li>Power the ODrive board.</li>
+                            <li>Plug in a USB cable into the microUSB connector on ODrive and connect to a PC.</li>
+                            <li>Navigate to the <code>tools</code> directory.</li>
+                            <li>After one or more ODrives are plugged in, run in terminal:
+                                <pre><code class="hljs bash">bash usbpermission</code></pre>
+                            </li>
+                            <li>Now one of the following can be done:
+                                <ul>
+                                    <li>Find ODrive serial number</li>
+                                    <li>Run trajectory script</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <h4>Find ODrive serial number</h4>
+                        <ul>
+                            <li>With just one ODrive connected to the PC, run:
+                                <pre><code class="hljs bash">python3 -i explore_odrive.py</code></pre>
+                            </li>
+                            <li>after connection with the ODrive is successful established, type in the following:
+                                <pre><code class="hljs bash">my_odrive.serial_number</code></pre>
+                            </li>
+                            <li>Note down this number, as when several ODrives are driven from the same PC, this unique serial number can be used to identify each ODrive.</li>
+                        </ul>
+                        <h4>Run trajectory script</h4>
+                        <ul>
+                            <li>Connect all ODrives to the same PC</li>
+                            <li>Edit <code>trajectory.py</code>, make sure that serial numbers for each pair of motors are correct:</li>
+                            <li>In terminal, run:
+                                <pre><code class="hljs bash">python3 trajectory.py</code></pre>
+                            </li>
+                        </ul>
+                        <h2>Reference</h2>
+                        <p>The usage above is a simple one. For more detailed documentation on ODrive, please refer to <a href="https://github.com/EE3-DTPRJ-Robot-Intelligence/ODrive/blob/master/README.md">https://github.com/EE3-DTPRJ-Robot-Intelligence/ODrive/blob/master/README.md</a></p>
+                        <p>ODrive board: <a href="https://github.com/madcowswe/ODrive">https://github.com/madcowswe/ODrive</a><br>
+                        ODrive board (modified): <a href="https://github.com/ij96/ODrive">https://github.com/ij96/ODrive</a><br>
+                        Encoder: <a href="https://www.digikey.co.uk/product-detail/en/ams/AS5047P-TS_EK_AB/AS5047P-TS_EK_AB-ND/5452344">https://www.digikey.co.uk/product-detail/en/ams/AS5047P-TS_EK_AB/AS5047P-TS_EK_AB-ND/5452344</a></p>
+                </div>
+
+            </div> <!-- /#page-content-wrapper -->
+        </div> <!-- /#wrapper -->
+
+        <!-- call includeHTML() -->
+        <script type="text/javascript">includeHTML();</script>
+
+        <!-- Bootstrap core JavaScript ================================================== -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="vendor/popper/popper.min.js"></script>
+        <!-- Bootstrap core JS: Material design -->
+        <script type="text/javascript" src="vendor/material/js/bootstrap-material-design.min.js"></script>
+
+    </body>
+</html>
