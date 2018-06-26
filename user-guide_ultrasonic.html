@@ -38,9 +38,12 @@
                 <div class="container-fluid">
                     <h1>User Guide: Ultrasonic Proximity Sensors</h1><hr />
                     <p>Ultrasonic sensors usage and implementation on Quickie.</p>
-                    <div>
-                        <h2>Setup</h2>
-                        <p>The Ultrasonic sensor used: <a href="https://www.sparkfun.com/products/13959">HC-SR04</a></p>
+                    <h2>Prerequisites</h2>
+                        <h3>Hardware</h3>
+                        <ul>
+                            <li>Ultrasonic sensor, model: <a href="https://www.sparkfun.com/products/13959">HC-SR04</a></li>
+                        </ul>
+                    <h2>Setup</h2>
                         <p>The line colours corresponding to the pins are as follows:</p>
                         <table class="table table-bordered" style="width: auto">
                             <thead class="thead-light">
@@ -68,10 +71,8 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
 
-                    <div>
-                        <h2>Usage</h2>
+                    <h2>Usage</h2>
                         <h3>Run Arduino code</h3>
                         <ul>
                             <li>In Arduino IDE, program the board with the <a href="https://github.com/EE3-DTPRJ-Robot-Intelligence/Documentation-draft/blob/master/Ultrasonic/ultrasonic_hcsr04.ino"><code>ultrasonic_hcsr04.ino</code></a> code</li>
@@ -94,9 +95,9 @@
 source /devel/setup.bash
 rosrun &lt;PACKAGE NAME&gt; ultrasonic_ros.py</code></pre>
                             <p>The data (array of int) is published to this rostopic: <code>/ultrasonic_data</code>
-                    </div>
 
-                    <div>
+
+
                         <h3>Run Quickie</h3>
                         <h4>Notes for applying ultrasonic data (ROS) with Quickie</h4>
                         <p>The idea was to utilise ultrasonic data published in rostopic and implement a safety feature on Quickie. The safety feature was to ensure that Quickie does not head in a direction where obstacles are present within 30 cm of Quickie. That means that Quickie will not respond to any command by the XBox controller which violates the 30 cm distance constraint.</p>
