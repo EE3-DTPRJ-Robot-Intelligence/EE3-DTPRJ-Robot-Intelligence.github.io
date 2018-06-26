@@ -36,28 +36,36 @@
             <!-- Page Content -->
             <div id="page-content-wrapper">
                 <div class="container-fluid">
-                    <h1>User Guide: Emergency Stop (E-Stop)</h1><hr />
-                        <p>Circuitry of emergency stop and wireless emergency stop.</p>
-                        <h2>Setup</h2>
-                            <h3>Wireless e-stop</h3>
-                            <p>Interlock:<br>
-                            <img src="asset/img/estop/relay.png"></p>
-                            <p>Connect jumper pin 1 and 2.<br>
-                            Relay: press one button is ON, press another button is OFF.</p>
+                    <div class="jumbotron">
+                        <h1 class="display-3">User Guide: Emergency Stop (E-Stop)</h1>
+                        <p class="lead">Circuitry of emergency stop and wireless emergency stop.</p>
+                        <a class="btn btn-outline-primary" href="https://github.com/EE3-DTPRJ-Robot-Intelligence/Estop.git">GitHub Repository</a>
+                    </div>
+                    <h2>Prerequisites</h2>
+                        <ul>
+                            <li>Emergency stop button</li>
+                        </ul>
+                    <hr />
+                    <h2>Setup</h2>
+                        <h3>Wireless e-stop</h3>
+                        <p>Interlock:<br>
+                        <img src="asset/img/estop/relay.png"></p>
+                        <p>Connect jumper pin 1 and 2.<br>
+                        Relay: press one button is ON, press another button is OFF.</p>
 
-                            <h3>Connection of wireless e-stop and e-stop</h3>
-                            <p>Power line → buck (12V output) → (+(yellow) -(grey)) of wireless e-stop<br>
-                            mbed signal (red) → e-stop (pink) → wireless e-stop → mbed signal (black)</p>
-                            <p>The following circuit diagram is shown below.<br>
-                            <img src="asset/img/estop/relay_c.png"></p>
+                        <h3>Connection of wireless e-stop and e-stop</h3>
+                        <p>Power line → buck (12V output) → (+(yellow) -(grey)) of wireless e-stop<br>
+                        mbed signal (red) → e-stop (pink) → wireless e-stop → mbed signal (black)</p>
+                        <p>The following circuit diagram is shown below.<br>
+                        <img src="asset/img/estop/relay_c.png"></p>
 
-                        <h2>Reference</h2>
-                            <ul>
-                                <li><a href="https://www.amazon.com/gp/product/B01CCSG2ZY/?keywords=12V%20Remote%20Control&amp;tag=insma-website-20&amp;linkId=b0e08b9ae0a8ab2ca6e018cfcd735b6b">Product page of the emergency stop on Amazon</a></li>
-                            </ul>
+                    <hr />
+                    <h2>Reference</h2>
+                        <ul>
+                            <li><a href="https://www.amazon.com/gp/product/B01CCSG2ZY/?keywords=12V%20Remote%20Control&amp;tag=insma-website-20&amp;linkId=b0e08b9ae0a8ab2ca6e018cfcd735b6b">Product page of the emergency stop on Amazon</a></li>
+                        </ul>
 
                 </div>
-
             </div> <!-- /#page-content-wrapper -->
         </div> <!-- /#wrapper -->
 

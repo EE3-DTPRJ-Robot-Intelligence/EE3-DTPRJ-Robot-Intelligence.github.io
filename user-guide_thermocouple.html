@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Page title -->
-        <title>User Guide: IMU &amp; IR Proximity</title>
+        <title>User Guide: Thermocouple</title>
 
         <!-- Bootstrap core CSS: Material design -->
         <link rel="stylesheet" href="vendor/material/css/material-icons.css">
@@ -37,9 +37,9 @@
             <div id="page-content-wrapper">
                 <div class="container-fluid">
                     <div class="jumbotron">
-                        <h1 class="display-3">User Guide: IMU &amp; IR Proximity</h1>
-                        <p class="lead">Arduino sketch for IMU and IR proximity sensors.</p>
-                        <a class="btn btn-outline-primary" href="https://github.com/EE3-DTPRJ-Robot-Intelligence/IMU-Proximity.git">GitHub Repository</a>
+                        <h1 class="display-3">User Guide: Thermocouple</h1>
+                        <p class="lead">Fast and accurate temperature monitoring for robot motors.</p>
+                        <a class="btn btn-outline-primary" href="https://github.com/EE3-DTPRJ-Robot-Intelligence/Thermocouple.git">GitHub Repository</a>
                     </div>
                     <h2>Prerequisites</h2>
                         <h3>Hardware</h3>
@@ -51,21 +51,32 @@
                         <h3>Software</h3>
                         <ul>
                             <li>Arduino IDE</li>
-                            <li><a href="https://github.com/adafruit/Adafruit_VCNL4010">Arduino VCNL4010 Library</a></li>
-                            <li><a href="https://maker.pro/files/MPU6050.zip">MPU6050 Library</a></li>
+                            <li><a href="https://github.com/EE3-DTPRJ-Robot-Intelligence/Thermocouple/blob/master/Adafruit_MAX31855_library-1.0.3.zip">Adafruit MAX31855 Library</a></li>
                         </ul>
                     <hr />
-                    <h2>Setup</h2>
-                        <h3>Hardware</h3>
-                        <p>Wire up the Arduino Nano, IMU and IR according to the diagram below:</p>
-                        <img src="asset/img/IMU_PROX_WIRING.jpg">
-                    <hr />
                     <h2>Usage</h2>
-                        <div class="bs-callout bs-callout-info">This program runs both sensors sharing the same I2C bus. Output format is a string containing acceleration, gyro, proximity and temperature.</div>
-                        <ol>
-                            <li>Upload the program <a href="https://github.com/EE3-DTPRJ-Robot-Intelligence/IMU-Proximity/blob/master/IMU_PROX.ino"><code>IMU_PROX.ino</code></a> to Arduino Nano via Arduino IDE.</li>
-                            <li>Open the Serial Monitor on Arduino IDE to read data.</li>
-                        </ol>
+                    <ol>
+                        <li>Download and install the Adafruit MAX31855 library for Arduino IDE. This can be done by either of the following methods:
+                            <ol>
+                                <li>Method 1
+                                    <ol>
+                                        <li>Open Arduino IDE</li>
+                                        <li>From the toolbar, open Sketch -&gt; Include Library -&gt; Manage Libraries</li>
+                                        <li>Search for “Adafruit MAX31855”</li>
+                                        <li>Select the first result and press “Install”</li>
+                                    </ol>
+                                </li>
+                                <li>Method 2
+                                    <ol>
+                                        <li>Download <a href="https://github.com/EE3-DTPRJ-Robot-Intelligence/Thermocouple/blob/master/Adafruit_MAX31855_library-1.0.3.zip">Adafruit_MAX31855_library-1.0.3.zip</a> from this repository</li>
+                                        <li>Unzip, then copy to Arduino libraries folder (usually <code>Documents\Arduino\libraries\</code> on Windows, or <code>~/Documents/Arduino/libraries/</code> on Linux)</li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </li>
+                        <li>Upload <a href="https://github.com/EE3-DTPRJ-Robot-Intelligence/Thermocouple/blob/master/serialthermocouple.ino"><code>serailthermocouple.ino</code></a> to Arduino via Arduino IDE.</li>
+                        <li>Open Serial Monitor to read data.</li>
+                    </ol>
 
                 </div>
             </div> <!-- /#page-content-wrapper -->

@@ -36,80 +36,91 @@
             <!-- Page Content -->
             <div id="page-content-wrapper">
                 <div class="container-fluid">
-                    <h1>User Guide: GPS</h1><hr />
-                        <p>Global positioning system for identifying the location of robots.</p>
-                        <h2>Prerequisites</h2>
-                            <h3>Hardware</h3>
-                                <ul>
-                                    <li>GPS, model <a href="https://www.ebay.co.uk/itm/Ublox-NEO-M8N-GPS-Compass-with-shell-for-PIX-PX4-Pixhawk-Flight-Controller-UK/252111344885?epid=1088850025&amp;hash=item3ab301d4f5:g:JbQAAOSwQTVV-osy">Ublox GPS NEO-M8N</a></li>
-                                </ul>
-                        <h2>Setup</h2>
-                        <p>GPS Baud rate: 38400</p>
-                            <p>Wire colours:</p>
-                            <table class="table table-bordered" style="width: auto">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col">USB pins</th>
-                                        <th scope="col">Jumper Colours</th>
-                                        <th scope="col">GPS Wire colours</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">3V3</th>
-                                        <td>Green</td>
-                                        <td>Red</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">TXD</th>
-                                        <td>Orange</td>
-                                        <td>White</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">RXD</th>
-                                        <td>Yellow</td>
-                                        <td>Yellow</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">GND</th>
-                                        <td>Red</td>
-                                        <td>Black</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <div class="jumbotron">
+                        <h1 class="display-3">User Guide: GPS</h1>
+                        <p class="lead">Global positioning system for identifying the location of robots.</p>
+                        <a class="btn btn-outline-primary" href="https://github.com/EE3-DTPRJ-Robot-Intelligence/GPS.git">GitHub Repository</a>
+                    </div>
+                    <h2>Prerequisites</h2>
+                        <h3>Hardware</h3>
+                            <ul>
+                                <li>GPS, model <a href="https://www.ebay.co.uk/itm/Ublox-NEO-M8N-GPS-Compass-with-shell-for-PIX-PX4-Pixhawk-Flight-Controller-UK/252111344885?epid=1088850025&amp;hash=item3ab301d4f5:g:JbQAAOSwQTVV-osy">Ublox GPS NEO-M8N</a></li>
+                            </ul>
+                        <h3>Software</h3>
+                            <ul>
+                                <li>Python 2.7</li>
+                            </ul>
 
-                        <h2>Usage</h2>
-                            <h3>Run python directly</h3>
+                    <hr />
+                    <h2>Setup</h2>
+                    <h3>Hardware</h3>
+                        <p>Connect the wires according to the colour scheme below:</p>
+                        <table class="table table-bordered" style="width: auto">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">USB pins</th>
+                                    <th scope="col">Jumper Colours</th>
+                                    <th scope="col">GPS Wire colours</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">3V3</th>
+                                    <td>Green</td>
+                                    <td>Red</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">TXD</th>
+                                    <td>Orange</td>
+                                    <td>White</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">RXD</th>
+                                    <td>Yellow</td>
+                                    <td>Yellow</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">GND</th>
+                                    <td>Red</td>
+                                    <td>Black</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    <hr />
+                    <h2>Usage</h2>
+                        <h3>Run Python script directly</h3>
+                        <ol>
+                            <li>Run <a href="https://github.com/EE3-DTPRJ-Robot-Intelligence/GPS/blob/master/gps_pyserial.py"><code>gps_pyserial.py</code></a> by running the following command in terminal:
+                                <pre><code class="hljs">sudo chmod 777 /dev/ttyUSB0
+python gps_pyserial.py</code></pre>
+                            </li>
+                        </ol>
+
+                        <h3>Run Python script via ROS</h3>
+                            <div class="bs-callout bs-callout-info"><a href="http://wiki.ros.org/">ROS</a>: Robot Operating System</div>
                             <ol>
-                                <li>In terminal, run:
-                                    <pre><code class="hljs">sudo chmod 777 /dev/ttyUSB0
-    python gps_pyserial.py</code></pre>
+                                <li>Download the <a href="http://wiki.ros.org/nmea_navsat_driver">nmea_navsat_driver</a>, by running the following in terminal:
+                                    <pre><code class="hljs">git clone https://github.com/ros-drivers/nmea_navsat_driver.git</code></pre>
                                 </li>
-                            </ol>
-
-                            <h3>Run ROS</h3>
-                                <ol>
-                                    <li>Download nmea_navsat_driver</li>
-                                    <li>In terminal, run:</li>
-                                        <pre><code class="hljs">git clone https://github.com/ros-drivers/nmea_navsat_driver.git</code></pre>
-                                    <li>Place nmea_navsat_driver package in src of catkin workspace, locate the files:
-                                        <ul>
-                                            <li>nmea_serial_driver</li>
-                                            <li>nmea_topic_serial_reader</li>
-                                        </ul>
-                                        <p>and ensure that the following line is set:</p>
-                                        <pre><code class="hljs python">serial_baud = rospy.get_param(<span class="hljs-string">'~baud'</span>, <span class="hljs-number">38400</span>) <span class="hljs-comment"># sets the baud rate to 38400</span></code></pre>
-                                    </li>
-                                    <li>Add the <code>gps_readable.py</code> file in the same location as the previous 2 files.</li>
-                                    <li>In terminal, run:
-                                        <pre><code class="hljs">roscore
+                                <li>Place the nmea_navsat_driver package in the <code>src</code> of the catkin workspace, check by locating the following files:
+                                    <ul>
+                                        <li>nmea_serial_driver</li>
+                                        <li>nmea_topic_serial_reader</li>
+                                    </ul>
+                                <li>Ensure that the following line is set:
+                                    <pre><code class="hljs python">serial_baud = rospy.get_param(<span class="hljs-string">'~baud'</span>, <span class="hljs-number">38400</span>) <span class="hljs-comment"># sets the baud rate to 38400</span></code></pre>
+                                </li>
+                                </li>
+                                <li>Add the <a href="https://github.com/EE3-DTPRJ-Robot-Intelligence/GPS/blob/master/gps_readable.py"><code>gps_readable.py</code></a> file in the same location as the previous 2 files.</li>
+                                <li>In terminal, run:
+                                    <pre><code class="hljs">roscore
 source /devel/setup.bash
 rosrun nmea_navsat_driver nmea_topic_serial_reader
 rosrun nmea_navt_driver gps_readable.py</code></pre>
-                                    </li>
-                                </ol>
+                                </li>
+                            </ol>
                 </div>
-
             </div> <!-- /#page-content-wrapper -->
         </div> <!-- /#wrapper -->
 
