@@ -43,6 +43,7 @@
                             <ul>
                                 <li>Treadmill, model: Dream Treadmill D1000</li>
                                 <li>Arduino UNO</li>
+                                <li>Treadmill-Arduino interface board: a stripboard with a 10-pin header.
                             </ul>
                             <h3>Software</h3>
                             <ul>
@@ -51,6 +52,7 @@
                         <h2>Usage</h2>
                             <ul>
                                 <li>Upload code to Arduino UNO by using Arduino IDE.</li>
+                                <li>Connect treadmill 10-pin cable to the interface board.</li>
                                 <li>Open the Serial Monitor in Arduino IDE.</li>
                                 <li>To turn on or off the motor: send <code>on</code> or <code>off</code> via Serial Monitor</li>
                                 <li>To set new PWM value: send <code>p&lt;pwm&gt;</code> via Serial, where <code>&lt;pwm&gt;</code> is an integer in the range of 0 to 65535 (default PWM on start-up is 0)</li>
