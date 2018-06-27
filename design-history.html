@@ -40,14 +40,28 @@
 
                     <hr />
                     <h2>Specification</h2>
+                        At the end of the project, we should be able to achieve the following (the reason for each point is also included):
                         <ol>
-                            <li>Measure the force on the foot of SLIDER.</li>
-                            <li>Make SLIDER run at walking speed.</li>
-                            <li>Measure the acceleration and movement of robots.</li>
-                            <li>Ensure that a robot will be able to detect changes in elevation in front of it.</li>
+                            <li>Measure the forces on the feet of SLIDER.
+                                <p>This data contributes to the calculation of center of mass of the robot, which eventually will be used as a feedback signal for the robot's self motion adjustment.</p>
+                            </li>
+                            <li>Make SLIDER run a predetermined walking trajectory at walking speed.
+                                <p>This proves the functionality of the motors control hardware and software.</p>
+                            </li>
+                            <li>Measure the acceleration and movement of robots.
+                                <p>This data contributes to the calculation of center of mass of the robot.</p>
+                            </li>
+                            <li>Ensure that a robot will be able to detect changes in elevation in front of it.
+                                <p>This is for detection and avoidance of sudden elevation change (e.g. stairs or gaps), in order to prevent stumbling and falling that may damage the robot.</p>
+                            </li>
                             <li>Ensure that a robot stops when it encounter obstacles around it.</li>
-                            <li>Monitor temperature of motors driving robots.</li>
-                            <li>Determine the location of robots.</li>
+                                <p>This is for collision detection and avoidance, in order to prevent damage to the surrounding objects and the robot itself.</p>
+                            <li>Monitor temperature of motors driving robots fastly and accurately.
+                                <p>This is for overheating detection.</p>
+                            </li>
+                            <li>Determine the location of a robot.
+                                <p>In the furute, a robot could be used for environment mapping, thus it is vital to know the location of the robot.</p>
+                            </li>
                         </ol>
 
                     <hr />
@@ -59,8 +73,9 @@
                             </ul>
                             We have also consulted the PhD students of the lab who have had more experience in robotics.</p>
                         <h3>Research outcomes</h3>
+                            Each of the following points corresponds to a point in the specifications.
                             <ol>
-                                <li>Load sensors (Phidget) can be used to measure forces applied on it.</li>
+                                <li>Load cells (Phidget) can be used to measure forces applied on it.</li>
                                 <li>After familiarising with the specification on the ODrive website, we managed to identify ways to make SLIDER run
                                     at walking speed. </li>
                                 <li>An inertial measurement unit (IMU) provides a way of tracking an object's acceleration and movement.</li>
