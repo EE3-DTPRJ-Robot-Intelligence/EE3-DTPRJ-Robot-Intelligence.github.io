@@ -42,9 +42,14 @@
                         <a class="btn btn-outline-primary" href="https://github.com/EE3-DTPRJ-Robot-Intelligence/Estop.git">GitHub Repository</a>
                     </div>
                     <h2>Prerequisites</h2>
+                    <h3>Hardware</h3>
                         <ul>
-                            <li>Emergency stop button</li>
+                            <li>1 x <b>emergency stop</b> button</li>
+                            <li>1 x <b>wireless emergency stop</b> (adapted from a <a href="https://www.amazon.co.uk/INSMA-Wireless-Channel-Receiver-Transmitter/dp/B01ELJ1D1A">DC 12V 4CH Channel 433Mhz Wireless Remote Control Switch</a>)</li>
+                            <li>1 x <b>voltage step-down module</b> (model: <a href="https://www.velleman.eu/products/view/?id=435566&country=be&lang=en">VMA404</a>)</li>
+                            <li></li>
                         </ul>
+
                     <hr />
                     <h2>Setup</h2>
                         <h3>Wireless e-stop</h3>
@@ -54,10 +59,17 @@
                         Relay: press one button is ON, press another button is OFF.</p>
 
                         <h3>Connection of wireless e-stop and e-stop</h3>
-                        <p>Power line → buck (12V output) → (+(yellow) -(grey)) of wireless e-stop<br>
+                        <p>Power line → step-down module (12V output) → (+(yellow) -(grey)) of wireless e-stop<br />
                         mbed signal (red) → e-stop (pink) → wireless e-stop → mbed signal (black)</p>
                         <p>The following circuit diagram is shown below.<br>
                         <img src="asset/img/estop/relay_c.png"></p>
+
+                    <hr />
+                    <h2>Usage</h2>
+                        <ol>
+                            <li>In case of emergency, press the e-stop button to cut power supply.</li>
+                            <li>To reset the e-stop button, turn the red nob clockwise until the nob pops back up.</li>
+                        </ol>
 
                     <hr />
                     <h2>Reference</h2>

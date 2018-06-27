@@ -37,26 +37,61 @@
             <div id="page-content-wrapper">
                 <div class="container-fluid">
                     <div class="jumbotron">
-                        <h1 class="display-3">User Guide:Treadmill</h1>
+                        <h1 class="display-3">User Guide: Treadmill</h1>
                         <p class="lead">Controlling treadmill speed directly using Arduino UNO.</p>
                         <a class="btn btn-outline-primary" href="https://github.com/EE3-DTPRJ-Robot-Intelligence/treadmill-hack.git">GitHub Repository</a>
                     </div>
                     <h2>Prerequisites</h2>
                         <h3>Hardware</h3>
                         <ul>
-                            <li>1 x Treadmill (model: Dream Treadmill D1000)</li>
-                            <li>1 x Arduino UNO</li>
-                            <li>1 x Treadmill-Arduino interface board: a stripboard with a 10-pin header.
+                            <li>1 x <b>Arduino UNO</b></li>
+                            <li>1 x <b>treadmill</b> (model: Dream Treadmill D1000): a <b>signal cable</b> with a 10-pin connector from the treadmill is to be used for direct signal control.</li>
+                            <li>1 x treadmill-Arduino <b>interface board</b>: a stripboard with a 10-pin header.
                         </ul>
                         <h3>Software</h3>
                         <ul>
                             <li>Arduino IDE</li>
                         </ul>
                     <hr />
+                    <h2>Setup</h2>
+                    <h3>Hardware</h3>
+                        Treadmill signal cable colour coding scheme:
+                        <table class="table table-bordered" style="width: auto">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Colour</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Vref</td><td>black</td><td>5V</td></tr>
+                                <tr><td>VR</td><td>white</td><td>~4.73V</td></tr>
+                                <tr><td>GND</td><td>grey</td><td>0V (ground)</td></tr>
+                                <tr><td>RPM</td><td>purple</td><td>RPM signal (active low, 2 peaks per rotation)</td></tr>
+                                <tr><td>VDD</td><td>blue</td><td>~15V</td></tr>
+                                <tr><td>PWM</td><td>green</td><td>PWM signal (native controller use 400Hz)</td></tr>
+                                <tr><td>DN</td><td>yellow</td><td>inclination up (active high)</td></tr>
+                                <tr><td>UP</td><td>orange</td><td>inclination down (active high)</td></tr>
+                                <tr><td>S/W</td><td>red</td><td>~15V</td></tr>
+                                <tr><td>relay</td><td>brown</td><td>relay signal (active high)</td></tr>
+                            </tbody>
+                        </table>
+                        <ol>
+                            <li>Connect treadmill signal cable to the interface board.</li>
+                            <li>There are 4 coloured wires on interface board that need to connected to Arduino UNO:
+                                <ul>
+                                    <li><span style="color: green">Green (PWM)</span>: to pin 2</li>
+                                    <li><span style="color: purple">Purple (RPM)</span>: to pin 9</li>
+                                    <li><span style="color: brown">Brown (relay)</span>: to pin 5</li>
+                                    <li><span style="color: grey">Gray (GND)</span>: to any ground pin (GND)</li>
+                                </ul>
+                                <div class="bs-callout bs-callout-warning">As the <span style="color: blue">VDD</span> and <span style="color: red">S/W</span> pins on the signal cable carry a voltage of 15V, <b>do not connect them to any of the Arduino pins</b>, otherwise the Arduino UNO will be damaged.</div>
+                            </li>
+                        </ol>
                     <h2>Usage</h2>
                         <ol>
                             <li>Upload the program <a href="https://github.com/EE3-DTPRJ-Robot-Intelligence/treadmill-hack/blob/master/treadmill-dt-d1000/treadmill-dt-d1000.ino"><code>treadmill-dt-d1000.ino</code></a> to Arduino UNO by using Arduino IDE.</li>
-                            <li>Connect treadmill 10-pin cable to the interface board.</li>
                             <li>Power on the treadmill.</li>
                             <li>Open the Serial Monitor in Arduino IDE.</li>
                             <li>Sending commands:
