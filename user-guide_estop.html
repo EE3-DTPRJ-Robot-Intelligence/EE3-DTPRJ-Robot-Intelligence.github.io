@@ -51,12 +51,15 @@
 
                     <hr />
                     <h2>Setup</h2>
-                        <h3>Wireless E-stop</h3>
+                        <h3>Wireless E-stop jumper</h3>
                         <img src="asset/img/estop/relay.png"></p>
-                        <p>Use interlock: connect jumper pin 1 and 2.<br>
-                        Relay: press one button is ON, press another button is OFF.</p>
+                        <p>Use interlock, by connecting jumper pins 1 and 2.</p>
+                        <p>Press one button is ON, press another button is OFF.</p>
 
                         <h3>Connecting the wireless E-stop and the E-stop</h3>
+                        <div class="bs-callout bs-callout-info">
+                            On the Quickie robot, there is a Raspberry Pi and a mbed module. The Raspberry Pi is used to run Python scripts for robot control; the mbed receives the signals from the Raspberry Pi, then outputs corresponding signals to control the motors and brakes on Quickie.
+                        </div>
                         <p>Power line → step-down module (12V output) → (+(yellow) -(grey)) of wireless E-stop<br />
                         mbed signal (red) → E-stop (pink) → wireless E-stop → mbed signal (black)</p>
                         <p>The following circuit diagram is shown below.<br>
