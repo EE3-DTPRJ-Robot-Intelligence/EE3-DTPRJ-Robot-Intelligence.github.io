@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Page title -->
-        <title>User Guide: Emergency Stop (E-Stop)</title>
+        <title>User Guide: Emergency Stop (E-stop)</title>
 
         <!-- Bootstrap core CSS: Material design -->
         <link rel="stylesheet" href="vendor/material/css/material-icons.css">
@@ -37,7 +37,7 @@
             <div id="page-content-wrapper">
                 <div class="container-fluid">
                     <div class="jumbotron">
-                        <h1 class="display-3">User Guide: Emergency Stop (E-Stop)</h1>
+                        <h1 class="display-3">User Guide: Emergency Stop (E-stop)</h1>
                         <p class="lead">Circuitry of emergency stop and wireless emergency stop.</p>
                         <a class="btn btn-outline-primary" href="https://github.com/EE3-DTPRJ-Robot-Intelligence/Estop.git">GitHub Repository</a>
                     </div>
@@ -45,36 +45,34 @@
                     <h3>Hardware</h3>
                         <ul>
                             <li>1 x <b>emergency stop</b> button</li>
-                            <li>1 x <b>wireless emergency stop</b> (adapted from a <a href="https://www.amazon.co.uk/INSMA-Wireless-Channel-Receiver-Transmitter/dp/B01ELJ1D1A">DC 12V 4CH Channel 433Mhz Wireless Remote Control Switch</a>)</li>
+                            <li>1 x <b>wireless emergency stop</b> (adapted from a <a href="https://www.amazon.co.uk/INSMA-Wireless-Channel-Receiver-Transmitter/dp/B01ELJ1D1A">Wireless Remote Control Switch</a>)</li>
                             <li>1 x <b>voltage step-down module</b> (model: <a href="https://www.velleman.eu/products/view/?id=435566&country=be&lang=en">VMA404</a>)</li>
-                            <li></li>
                         </ul>
 
                     <hr />
                     <h2>Setup</h2>
-                        <h3>Wireless e-stop</h3>
-                        <p>Interlock:<br>
+                        <h3>Wireless E-stop</h3>
                         <img src="asset/img/estop/relay.png"></p>
-                        <p>Connect jumper pin 1 and 2.<br>
+                        <p>Use interlock: connect jumper pin 1 and 2.<br>
                         Relay: press one button is ON, press another button is OFF.</p>
 
-                        <h3>Connection of wireless e-stop and e-stop</h3>
-                        <p>Power line → step-down module (12V output) → (+(yellow) -(grey)) of wireless e-stop<br />
-                        mbed signal (red) → e-stop (pink) → wireless e-stop → mbed signal (black)</p>
+                        <h3>Connecting the wireless E-stop and the E-stop</h3>
+                        <p>Power line → step-down module (12V output) → (+(yellow) -(grey)) of wireless E-stop<br />
+                        mbed signal (red) → E-stop (pink) → wireless E-stop → mbed signal (black)</p>
                         <p>The following circuit diagram is shown below.<br>
                         <img src="asset/img/estop/relay_c.png"></p>
 
                     <hr />
                     <h2>Usage</h2>
                         <ol>
-                            <li>In case of emergency, press the e-stop button to cut power supply.</li>
-                            <li>To reset the e-stop button, turn the red nob clockwise until the nob pops back up.</li>
+                            <li>In case of emergency, press the E-stop button to cut power supply.</li>
+                            <li>To reset the E-stop button, turn the red nob clockwise until the nob pops back up.</li>
                         </ol>
 
                     <hr />
                     <h2>Reference</h2>
                         <ul>
-                            <li><a href="https://www.amazon.com/gp/product/B01CCSG2ZY/?keywords=12V%20Remote%20Control&amp;tag=insma-website-20&amp;linkId=b0e08b9ae0a8ab2ca6e018cfcd735b6b">Product page of the emergency stop on Amazon</a></li>
+                            <li>Detailed usage of the wireless E-stop can also be found in the Product Description section of this <a href="https://www.amazon.co.uk/INSMA-Wireless-Channel-Receiver-Transmitter/dp/B01ELJ1D1A">page</a>.</li>
                         </ul>
 
                 </div>
